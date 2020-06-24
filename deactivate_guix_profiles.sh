@@ -33,30 +33,15 @@ Options:
     OLDFLAG="${${(z)$(set +o|grep extendedglob)}[2]}"
     set -o extendedglob
     backup-paths
-    # export _OLD_PATH="${PATH}"
-    # if [[ ${CHANGEINFO} ]]; then
-    # 	export _OLD_INFOPATH="${INFOPATH}"
-    # fi
-    # if [[ ${CHANGEXDG} ]]; then
-    # 	export _OLD_XDG_DATA_DIRS="${XDG_DATA_DIRS}"
-    # fi
     # Remaining arguments are stored in "${@[@]:$OPTIND}"
     for profile in ${@[@]:${OPTIND}}; do
 	if [[ $(readlink -f ${profile}) =~ /gnu/store ]]; then
-	    # PATH="${${${PATH//${profile}\/(s#)bin}//::#/:}#:}"
-	    # if [[ $CHANGEXDG ]]; then
-	    # 	XDG_DATA_DIRS="${${${XDG_DATA_DIRS//${profile}\/share}//::#/:}#:}"
-	    # fi
-	    # if [[ $CHANGEINFO ]]; then
-	    # 	INFOPATH="${${${INFOPATH//${profile}\/share\/info}//::#/:}#:}"
-	    # fi
-	    echo "profile: ${profile}\n"
-	    echo "PATH: ${${${PATH//${profile}\/(s#)bin}//::#/:}#:}\n"
-	    if [[ ${CHANGEINFO} ]]; then
-		echo "INFOPATH ${${${INFOPATH//${profile}\/share\/info}//::#/:}#:}\n"
-	    fi
+	    PATH="${${${PATH//${profile}\/(s#)bin}//::#/:}#:}"
 	    if [[ ${CHANGEXDG} ]]; then
-		echo "XDG_DATA_DIRS ${${${XDG_DATA_DIRS//${profile}\/share}//::#/:}#:}\n"
+	    	XDG_DATA_DIRS="${${${XDG_DATA_DIRS//${profile}\/share}//::#/:}#:}"
+	    fi
+	    if [[ ${CHANGEINFO} ]]; then
+	    	INFOPATH="${${${INFOPATH//${profile}\/share\/info}//::#/:}#:}"
 	    fi
 	else
 	    echo "\"$profile\" is not a guix profile!"
