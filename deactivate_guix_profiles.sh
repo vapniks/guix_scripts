@@ -51,7 +51,7 @@ Options:
     unset OLDFLAG CHANGEINFO CHANGEXDG option profile
 }
 
-# Restore the contents of relevant env variables from backup variables.
+# Restore the contents of relevant environment variables from backup variables.
 # Only argument is a prefix to use for the backup variable names (default is _OLD_)
 function restore-paths {
     if [[ ${1} ]]; then
