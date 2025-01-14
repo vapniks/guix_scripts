@@ -45,6 +45,6 @@
 	  (call-with-values (lambda () (find-guix-commit pkg version))
 	    (lambda (pullgen chash)
 	      (if pullgen
-		  (format #t "Package ~a@~a found in pull generation: ~a, with commit hash: ~a~%"
+		  (format #t "Package ~a@~a found in guix pull generation: ~a, with commit hash: ~a~%"
 			  pkg version pullgen chash)
 		  (format #t "Can't find guix pull profile for version ~a of ~a~%" version pkg))))))))
